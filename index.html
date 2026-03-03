@@ -50,7 +50,13 @@
 
 <script>
     const params = new URLSearchParams(window.location.search);
-    const id = params.get("id");
+    let id = params.get("id");
+
+    // If no id present, redirect to ?id=404
+    if (!id) {
+        window.location.search = "?id=404";
+    }
+
     const content = document.getElementById("content");
 
     if (id === "200") {
