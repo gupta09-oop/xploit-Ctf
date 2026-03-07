@@ -1,1 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Status Code Mystery</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #202123;
+            color: white;
+            padding: 40px;
+        }
 
+        .chat-box {
+            background: #343541;
+            padding: 25px;
+            border-radius: 10px;
+            max-width: 700px;
+            margin: auto;
+        }
+
+        .user {
+            color: #19c37d;
+            margin-bottom: 10px;
+        }
+
+        .assistant {
+            color: #ffffff;
+        }
+
+        .flag {
+            margin-top: 20px;
+            background: #111;
+            padding: 12px;
+            border-radius: 6px;
+            color: #00ff00;
+            font-weight: bold;
+        }
+
+        .error {
+            color: #ff4d4d;
+        }
+    </style>
+</head>
+<body>
+
+<div class="chat-box">
+    <h2>ChatGPT Shared Conversation</h2>
+    <div id="content"></div>
+</div>
+
+<script>
+    const params = new URLSearchParams(window.location.search);
+    const id = params.get("id");
+    const content = document.getElementById("content");
+
+    if (!id || id === "404") {
+        content.innerHTML = `
+            <div class="error">
+                <h3>404 - Conversation Not Found</h3>
+                <p>The shared conversation does not exist.</p>
+            </div>
+        `;
+    } 
+    else if (id === "200") {
+        content.innerHTML = `
+            <div class="user"><b>User:</b> Ok its enough i will tell you my deepest secret</div>
+            <div class="assistant"><b>Assistant:</b> I'm listening...</div>
+            <div class="flag">
+                Xploit{status_code_200_success}
+            </div>
+        `;
+    } 
+    else {
+        content.innerHTML = `
+            <div class="error">
+                <h3>Invalid Identifier</h3>
+                <p>This share link is invalid.</p>
+            </div>
+        `;
+    }
+</script>
+
+</body>
+</html>
